@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>أحمد فايد | أخصائي عمليات وتشغيل ومحاسب مخزون</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              500: '#0284c7',
+              600: '#0369a1',
+              700: '#075985',
+              800: '#0c4a6e',
+              900: '#082f49',
+            },
+            accent: {
+              500: '#f59e0b',
+              600: '#d97706',
+            }
+          },
+          fontFamily: {
+            sans: ['Tajawal', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts: Tajawal -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      font-family: 'Tajawal', sans-serif;
+    }
+    
+    /* أنماط مخصصة للطباعة والتصدير كـ PDF */
+    @media print {
+      .no-print {
+        display: none !important;
+      }
+      body {
+        background-color: white !important;
+        color: #111827 !important;
+        font-size: 11pt !important;
+      }
+      .page-break {
+        page-break-before: always;
+      }
+      .card-print {
+        border: 1px solid #e5e7eb !important;
+        box-shadow: none !important;
+        break-inside: avoid;
+      }
+      .shadow-2xl, .shadow-xl, .shadow-lg, .shadow-md, .shadow-sm {
+        box-shadow: none !important;
+      }
+    }
+
+    /* خلفية متدرجة وشبكة جمالية */
+    .bg-grid-pattern {
+      background-size: 30px 30px;
+      background-image: radial-gradient(circle, rgba(2, 132, 199, 0.1) 1px, transparent 1px);
+    }
+    .dark .bg-grid-pattern {
+      background-image: radial-gradient(circle, rgba(56, 189, 248, 0.08) 1px, transparent 1px);
+    }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 relative selection:bg-brand-500 selection:text-white">
+
+  <!-- خلفية زخرفية -->
+  <div class="fixed inset-0 bg-grid-pattern pointer-events-none z-0"></div>
+
+  <!-- شريط التنقل العلوي -->
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-white/80 dark:bg-slate-900/80 border-b border-slate-200 dark:border-slate-800 no-print">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <a href="#hero" class="flex items-center gap-2 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-sky-400 flex items-center justify-center text-white font-black text-xl shadow-md group-hover:scale-105 transition-transform">
+          ف
+        </div>
+        <div>
+          <span class="font-extrabold text-lg text-slate-900 dark:text-white tracking-tight">أحمد فايد</span>
+          <span class="block text-xs text-brand-600 dark:text-sky-400 font-medium">عمليات وتشغيل • محاسبة ومخزون</span>
+        </div>
+      </a>
+
+      <!-- روابط سريعة للديسكتوب -->
+      <nav class="hidden md:flex items-center gap-6 text-sm font-semibold text-slate-600 dark:text-slate-300">
+        <a href="#about" class="hover:text-brand-600 dark:hover:text-sky-400 transition-colors">نبذة مهنية</a>
+        <a href="#skills" class="hover:text-brand-600 dark:hover:text-sky-400 transition-colors">المهارات والقدرات</a>
+        <a href="#experience" class="hover:text-brand-600 dark:hover:text-sky-400 transition-colors">الخبرات العملية</a>
+        <a href="#education" class="hover:text-brand-600 dark:hover:text-sky-400 transition-colors">المؤهلات والشهادات</a>
+        <a href="#contact" class="hover:text-brand-600 dark:hover:text-sky-400 transition-colors">تواصل معي</a>
+      </nav>
+
+      <!-- أدوات التحكم والطباعة -->
+      <div class="flex items-center gap-3">
+        <!-- زر التبديل الليلي/النهاري -->
+        <button id="themeToggle" aria-label="تبديل الوضع" class="p-2 rounded-xl text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">
+          <i data-lucide="moon" class="w-5 h-5 hidden dark:block"></i>
+          <i data-lucide="sun" class="w-5 h-5 block dark:hidden"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-8 space-y-16">
+
+    <!-- قسم النبذة والتعريف الشخصي (Hero Section) -->
+    <section id="hero" class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-brand-900 to-slate-900 text-white p-6 sm:p-10 md:p-14 shadow-2xl border border-slate-800">
+      <div class="absolute -right-20 -top-20 w-80 h-80 bg-brand-500/20 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -left-20 -bottom-20 w-80 h-80 bg-sky-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+        <div class="space-y-4 text-center md:text-right max-w-2xl">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/20 border border-brand-400/30 text-sky-300 text-xs font-semibold">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            مقيم في أبها • جاهز للعمل والمقابلة الفورية
+          </div>
+
+          <h1 class="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
+            أحمد فايد
+          </h1>
+
+          <p class="text-lg sm:text-xl font-bold text-sky-200">
+            أخصائي عمليات وتشغيل | محاسب مستودعات ومخزون | دعم إداري وتقني
+          </p>
+
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed font-light">
+            مهني متعدد المهارات يتمتع بقدرة استثنائية على الجمع بين <strong>الضبط المحاسبي الدقيق وإدارة حركة المخازن والفروع</strong>، وتنسيق <strong>العمليات وسلاسل الإمداد ومتابعة الشحنات</strong>، مع <strong>خلفية قانونية (ليسانس حقوق)</strong> تدعم الالتزام بالأنظمة وصياغة العقود، بالإضافة إلى احتراف أدوات مايكروسوفت أوفيس والإكسل وحل المشكلات التقنية لرفع كفاءة بيئة العمل.
+          </p>
+
+          <!-- شارات الاتصال السريعة -->
+          <div class="pt-3 flex flex-wrap items-center justify-center md:justify-start gap-3 text-xs sm:text-sm">
+            <a href="tel:+966571871734" class="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-white/10 hover:bg-white/20 transition-all border border-white/15">
+              <i data-lucide="phone-call" class="w-4 h-4 text-emerald-400"></i>
+              <span dir="ltr">+966 57 187 1734</span>
+            </a>
+            <a href="mailto:ahmedfayed72000@gmail.com" class="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-white/10 hover:bg-white/20 transition-all border border-white/15">
+              <i data-lucide="mail" class="w-4 h-4 text-sky-400"></i>
+              <span>ahmedfayed72000@gmail.com</span>
+            </a>
+            <span class="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-white/10 border border-white/15 text-slate-200">
+              <i data-lucide="map-pin" class="w-4 h-4 text-rose-400"></i>
+              <span>أبها، منطقة عسير، السعودية</span>
+            </span>
+          </div>
+
+          <!-- أزرار الإجراءات السريعة -->
+          <div class="pt-4 flex flex-wrap items-center justify-center md:justify-start gap-4 no-print">
+            <a href="https://api.whatsapp.com/send?phone=966571871734&text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%A3%D8%AE%20%D8%A3%D8%AD%D9%85%D8%AF%D8%8C%20%D8%A7%D8%B7%D9%84%D8%B9%D9%86%D8%A7%20%D8%B9%D9%84%D9%89%20%D8%B3%D9%8A%D8%B1%D8%AA%D9%83%20%D8%A7%D9%84%D8%B0%D8%A7%D8%AA%D9%8A%D8%A9%20%D9%88%D9%86%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%A7%D9%84%D8%AA%D9%88%D8%A7%D8%B5%D9%84%20%D9%85%D8%B9%D9%83." target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-lg shadow-emerald-900/30 transition-all transform hover:-translate-y-0.5 active:scale-95 cursor-pointer">
+              <i data-lucide="message-circle" class="w-4 h-4"></i>
+              محادثة واتساب مباشرة
+            </a>
+            <a href="tel:+966571871734" class="flex items-center gap-2 px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-sm border border-white/20 transition-all active:scale-95 cursor-pointer">
+              <i data-lucide="phone" class="w-4 h-4"></i>
+              اتصال هاتفي سريع
+            </a>
+          </div>
+        </div>
+
+        <!-- بطاقة المعاينة والرمز الرمزي -->
+        <div class="w-full md:w-auto flex flex-col items-center">
+          <div class="relative w-44 h-44 sm:w-48 sm:h-48 rounded-3xl p-1 bg-gradient-to-tr from-sky-400 via-brand-500 to-indigo-500 shadow-2xl">
+            <div class="w-full h-full bg-slate-900 rounded-[22px] flex flex-col items-center justify-center p-4 text-center border border-white/10">
+              <div class="w-16 h-16 rounded-2xl bg-brand-500/20 text-sky-300 flex items-center justify-center mb-3">
+                <i data-lucide="layers" class="w-9 h-9"></i>
+              </div>
+              <span class="text-sm font-bold text-white">كفاءة تشغيلية ومحاسبية</span>
+              <span class="text-xs text-slate-400 mt-1">تنظيم • دقة مالية • تقنية</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- إحصائيات سريعة أسفل الكرت -->
+      <div class="mt-10 pt-6 border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+        <div class="p-3 rounded-2xl bg-white/5 backdrop-blur-sm">
+          <div class="text-2xl sm:text-3xl font-extrabold text-sky-300">+3 سنوات</div>
+          <div class="text-xs text-slate-300 mt-1">خبرة متنوعة في الإدارة والمحاسبة</div>
+        </div>
+        <div class="p-3 rounded-2xl bg-white/5 backdrop-blur-sm">
+          <div class="text-2xl sm:text-3xl font-extrabold text-sky-300">صفر خطأ</div>
+          <div class="text-xs text-slate-300 mt-1">دقة في الجرد وتدقيق الفواتير</div>
+        </div>
+        <div class="p-3 rounded-2xl bg-white/5 backdrop-blur-sm">
+          <div class="text-2xl sm:text-3xl font-extrabold text-sky-300">سنتان خبرة</div>
+          <div class="text-xs text-slate-300 mt-1">محاسب قانوني موثقة رسمياً</div>
+        </div>
+        <div class="p-3 rounded-2xl bg-white/5 backdrop-blur-sm">
+          <div class="text-2xl sm:text-3xl font-extrabold text-sky-300">أبها وعسير</div>
+          <div class="text-xs text-slate-300 mt-1">إقامة وجاهزية مباشرة للمباشرة</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- نبذة استراتيجية عن المترشح -->
+    <section id="about" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="md:col-span-1 bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-800 card-print">
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+          <i data-lucide="badge-check" class="w-5 h-5 text-brand-600 dark:text-sky-400"></i>
+          البيانات الأساسية
+        </h3>
+        <ul class="space-y-3 text-sm text-slate-600 dark:text-slate-300">
+          <li class="flex items-center justify-between pb-2 border-b border-slate-100 dark:border-slate-800">
+            <span class="text-slate-400">التخصص الأساسي:</span>
+            <span class="font-bold text-slate-800 dark:text-slate-100">عمليات، تشغيل، محاسبة</span>
+          </li>
+          <li class="flex items-center justify-between pb-2 border-b border-slate-100 dark:border-slate-800">
+            <span class="text-slate-400">مكان التواجد:</span>
+            <span class="font-bold text-slate-800 dark:text-slate-100">أبها، عسير</span>
+          </li>
+          <li class="flex items-center justify-between pb-2 border-b border-slate-100 dark:border-slate-800">
+            <span class="text-slate-400">المؤهل الدراسي:</span>
+            <span class="font-bold text-slate-800 dark:text-slate-100">ليسانس حقوق - جامعة المنصورة</span>
+          </li>
+          <li class="flex items-center justify-between pb-2 border-b border-slate-100 dark:border-slate-800">
+            <span class="text-slate-400">توثيق الشهادة:</span>
+            <span class="font-bold text-emerald-600 dark:text-emerald-400">موثقة من الخارجية المصرية</span>
+          </li>
+          <li class="flex items-center justify-between">
+            <span class="text-slate-400">الجاهزية للعمل:</span>
+            <span class="font-bold text-brand-600 dark:text-sky-400">مباشرة فورية</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="md:col-span-2 bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-800 card-print">
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+          <i data-lucide="zap" class="w-5 h-5 text-accent-500"></i>
+          لماذا توظيف أحمد فايد يحقق إضافة فورية لعملكم؟
+        </h3>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+          أمتلك القدرة على تولي المهام التي تتطلب <strong>تنظيماً استثنائياً، ودقة حسابية متناهية، وحساً تقنياً وإدارياً عالياً</strong>. قدرتي على الربط بين متابعة تدفق البضائع والشحنات وتوزيعها، وإدخال قيود وفواتير المشتريات والمبيعات ومطابقة الفروع، تجعلني خياراً عملياً مثالياً لإدارة العمليات اليومية للشركات التجارية، سلاسل التوزيع، والمؤسسات الخدمية في منطقة عسير.
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+          <div class="p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-150 dark:border-slate-700/50 flex items-start gap-3">
+            <i data-lucide="check-circle" class="w-5 h-5 text-emerald-500 shrink-0 mt-0.5"></i>
+            <span class="text-xs sm:text-sm text-slate-700 dark:text-slate-200"><strong>حماية المخزون والسيولة:</strong> ضبط ومطابقة دورية تمنع الفروقات أو العجز.</span>
+          </div>
+          <div class="p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-150 dark:border-slate-700/50 flex items-start gap-3">
+            <i data-lucide="check-circle" class="w-5 h-5 text-emerald-500 shrink-0 mt-0.5"></i>
+            <span class="text-xs sm:text-sm text-slate-700 dark:text-slate-200"><strong>تنظيم دورة العمل وسرعة الإنجاز:</strong> ابتكار آليات ذكية لتسهيل المعاملات وتفادي الروتين.</span>
+          </div>
+          <div class="p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-150 dark:border-slate-700/50 flex items-start gap-3">
+            <i data-lucide="check-circle" class="w-5 h-5 text-emerald-500 shrink-0 mt-0.5"></i>
+            <span class="text-xs sm:text-sm text-slate-700 dark:text-slate-200"><strong>استقلالية تقنية بالمكتب:</strong> حل أعطال الطابعات، الإكسل، وتنسيق الأجهزة دون توقف للعمل.</span>
+          </div>
+          <div class="p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-150 dark:border-slate-700/50 flex items-start gap-3">
+            <i data-lucide="check-circle" class="w-5 h-5 text-emerald-500 shrink-0 mt-0.5"></i>
+            <span class="text-xs sm:text-sm text-slate-700 dark:text-slate-200"><strong>دقة في الالتزام والتوثيق:</strong> خلفية قانونية تضمن سلامة العقود والمستندات الإدارية.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- المهارات والكفاءات التفصيلية والعملية -->
+    <section id="skills" class="space-y-6">
+      <div class="border-b border-slate-200 dark:border-slate-800 pb-4">
+        <h2 class="text-2xl font-black text-slate-900 dark:text-white flex items-center gap-3">
+          <i data-lucide="sliders" class="w-6 h-6 text-brand-600 dark:text-sky-400"></i>
+          المهارات والقدرات الاحترافية
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">مهارات تنفيذية وحلول عملية مصممة لرفع إنتاجية المؤسسة</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <!-- مهارات المحاسبة والمالية والمخازن -->
+        <div class="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm card-print">
+          <div class="w-12 h-12 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-4">
+            <i data-lucide="calculator" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-3">المحاسبة، المخزون، والتدقيق</h3>
+          <ul class="space-y-3 text-sm text-slate-600 dark:text-slate-300">
+            <li class="flex items-start gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2 shrink-0"></span>
+              <span><strong>إدارة فواتير المشتريات والمبيعات:</strong> تسجيل القيود اليومية وحساب التكلفة وهامش الربح.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2 shrink-0"></span>
+              <span><strong>الجرد الدوري ومراقبة المخزن:</strong> جرد فعلي مطابق للدفاتر وكشف أي هدر أو تالف.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2 shrink-0"></span>
+              <span><strong>توزيع البضائع على الفروع:</strong> متابعة سندات التحويل الداخلي وتغذية نقاط البيع.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2 shrink-0"></span>
+              <span><strong>التسويات المالية ومطابقة الصناديق:</strong> متابعة المقبوضات والمدفوعات والمستحقات.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- مهارات برمجية وتقنية ومكتبية -->
+        <div class="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm card-print">
+          <div class="w-12 h-12 rounded-2xl bg-sky-50 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400 flex items-center justify-center mb-4">
+            <i data-lucide="monitor" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-3">الكفاءة التقنية والأدوات الرقمية</h3>
+          <ul class="space-y-3 text-sm text-slate-600 dark:text-slate-300">
+            <li class="flex items-start gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-sky-500 mt-2 shrink-0"></span>
+              <span><strong>إتقان احترافي لـ MS Office:</strong> صياغة معادلات Excel المتقدمة، الجداول، والدوال المحاسبية.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-sky-500 mt-2 shrink-0"></span>
+              <span><strong>التعامل مع الطابعات والشبكات:</strong> تعريف وصيانة الطابعات المكتبية والماسحات وأجهزة الباركود.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-sky-500 mt-2 shrink-0"></span>
+              <span><strong>معالجة الصور والتصاميم (Photoshop):</strong> تعديل صور المنتجات وتنسيق المواد الدعائية والمطبوعات.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-sky-500 mt-2 shrink-0"></span>
+              <span><strong>حل المشاكل التقنية للأجهزة:</strong> استكشاف الأعطال وحلها ذاتياً لضمان استمرارية العمل.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- مهارات العمليات والحلول والتنظيم -->
+        <div class="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm card-print">
+          <div class="w-12 h-12 rounded-2xl bg-purple-50 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400 flex items-center justify-center mb-4">
+            <i data-lucide="target" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-3">إدارة العمليات والحلول الذكية</h3>
+          <ul class="space-y-3 text-sm text-slate-600 dark:text-slate-300">
+            <li class="flex items-start gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2 shrink-0"></span>
+              <span><strong>ابتكار حلول لتسهيل وتسريع العمل:</strong> تبسيط الإجراءات الورقية وتحويلها إلى قوالب ونماذج منظمة.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2 shrink-0"></span>
+              <span><strong>المتابعة والتنسيق التشغيلي:</strong> تتبع تدفق الشحنات ومواعيد الاستلام والتسليم بدقة صارمة.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2 shrink-0"></span>
+              <span><strong>خدمة العملاء وحل الشكاوى:</strong> معالجة طلبات واعتراضات العملاء بأسلوب مهني وهادئ.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2 shrink-0"></span>
+              <span><strong>الفهم القانوني والإجرائي:</strong> التزام كامل باللوائح والعقود وسلامة الشروط الرسمية.</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- مقياس اللغات -->
+      <div class="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm card-print">
+        <h3 class="text-md font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+          <i data-lucide="languages" class="w-5 h-5 text-brand-600 dark:text-sky-400"></i>
+          اللغات والتواصل
+        </h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div>
+            <div class="flex justify-between items-center mb-1 text-sm font-semibold">
+              <span class="text-slate-800 dark:text-slate-200">اللغة العربية (اللغة الأم)</span>
+              <span class="text-brand-600 dark:text-sky-400 font-bold">طلاقة تامة (Fluent / Native)</span>
+            </div>
+            <div class="w-full h-2.5 bg-slate-150 dark:bg-slate-800 rounded-full overflow-hidden">
+              <div class="h-full bg-brand-600 rounded-full w-full"></div>
+            </div>
+          </div>
+
+          <div>
+            <div class="flex justify-between items-center mb-1 text-sm font-semibold">
+              <span class="text-slate-800 dark:text-slate-200">اللغة الإنجليزية (English)</span>
+              <span class="text-brand-600 dark:text-sky-400 font-bold">جيد في بيئة العمل والمراسلات (Good Working Proficiency)</span>
+            </div>
+            <div class="w-full h-2.5 bg-slate-150 dark:bg-slate-800 rounded-full overflow-hidden">
+              <div class="h-full bg-brand-600 rounded-full w-3/4"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- قسم الخبرات المهنية مصاغة بطابع عمليات وتشغيل ومحاسبة -->
+    <section id="experience" class="space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-4">
+        <div>
+          <h2 class="text-2xl font-black text-slate-900 dark:text-white flex items-center gap-3">
+            <i data-lucide="briefcase" class="w-6 h-6 text-brand-600 dark:text-sky-400"></i>
+            الخبرات المهنية العملية
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">سجل تطبيقي حقيقي يركز على النتائج، التنظيم المحكم، والمسؤولية الكاملة</p>
+        </div>
+        <span class="text-xs font-semibold px-3 py-1 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 w-fit">
+          مسار عملي موثوق
+        </span>
+      </div>
+
+      <div class="relative border-r-2 border-brand-500/30 dark:border-brand-500/40 mr-3 sm:mr-6 space-y-8">
+
+        <!-- الخبرة 1: شركة استبرق - تركيز على العمليات اللوجستية ومتابعة الشحنات وتنسيق المستندات -->
+        <div class="relative pr-6 sm:pr-8 group">
+          <div class="absolute -right-[9px] top-1.5 w-4 h-4 rounded-full bg-brand-600 ring-4 ring-brand-100 dark:ring-brand-900"></div>
+
+          <div class="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-shadow card-print">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <span class="px-3 py-1 rounded-full bg-brand-50 dark:bg-brand-950/80 text-brand-700 dark:text-sky-300 text-xs font-bold border border-brand-200 dark:border-brand-800">
+                ٢٠٢٥ – ٢٠٢٦
+              </span>
+              <span class="text-xs text-slate-500 flex items-center gap-1">
+                <i data-lucide="building" class="w-3.5 h-3.5 text-slate-400"></i>
+                مكتب استبرق للتجارة والشحن الدولي
+              </span>
+            </div>
+
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white">
+              مسئول عمليات وتنسيق الشحنات وتدقيق الملفات
+            </h3>
+            <p class="text-sm font-semibold text-brand-600 dark:text-sky-400 mb-4">
+              إدارة دورة الشحنات، متابعة جهات التوريد، والتدقيق المالي والمستندي
+            </p>
+
+            <ul class="space-y-2.5 text-sm text-slate-600 dark:text-slate-300">
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-brand-600 dark:text-sky-400 shrink-0 mt-1"></i>
+                <span><strong>تأسيس وأرشفة ملفات الشحنات والبضائع:</strong> تنظيم وتدقيق المستندات الرسمية، بوالص الشحن، فواتير الموردين، وقوائم التعبئة لضمان سلامتها النظامية.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-brand-600 dark:text-sky-400 shrink-0 mt-1"></i>
+                <span><strong>التنسيق والمتابعة الزمنية الصارمة:</strong> تتبع مواعيد تحرك ووصول الشحنات والتواصل المستمر مع وكلاء الشحن والمستودعات لاستلام البوالص وتفادي أي غرامات تأخير.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-brand-600 dark:text-sky-400 shrink-0 mt-1"></i>
+                <span><strong>متابعة فرق العمل الميدانية:</strong> توجيه ومتابعة الموظفين التنفيذيين خطوة بخطوة حتى تسليم واستلام الشحنات وتأكيد سلامة البضائع بالكامل.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-brand-600 dark:text-sky-400 shrink-0 mt-1"></i>
+                <span><strong>تسجيل المعاملات المالية والمصروفات:</strong> احتساب الرسوم وتكاليف النقل والخدمات بدقة وإصدار المطالبات والتسويات المالية النهائية.</span>
+              </li>
+            </ul>
+
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex flex-wrap gap-2">
+              <span class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">إدارة الشحنات</span>
+              <span class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">تنسيق الموردين والوكلاء</span>
+              <span class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">تدقيق المستندات والعقود</span>
+              <span class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">التسويات المالية</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- الخبرة 2: شركة رتشي - محاسبة ومخازن وفروع -->
+        <div class="relative pr-6 sm:pr-8 group">
+          <div class="absolute -right-[9px] top-1.5 w-4 h-4 rounded-full bg-emerald-600 ring-4 ring-emerald-100 dark:ring-emerald-950"></div>
+
+          <div class="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-shadow card-print">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <span class="px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 text-xs font-bold border border-emerald-200 dark:border-emerald-800">
+                ٢٠٢٤ – ٢٠٢٥
+              </span>
+              <span class="text-xs text-slate-500 flex items-center gap-1">
+                <i data-lucide="shopping-bag" class="w-3.5 h-3.5 text-slate-400"></i>
+                شركة رتشي لاستيراد وتوزيع الملابس
+              </span>
+            </div>
+
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white">
+              محاسب مستودعات ومسئول حركة المخزون والفروع
+            </h3>
+            <p class="text-sm font-semibold text-emerald-600 dark:text-emerald-400 mb-4">
+              إدارة القيود، جرد المخازن، توزيع البضائع على المحلات، ومطابقة المبيعات
+            </p>
+
+            <ul class="space-y-2.5 text-sm text-slate-600 dark:text-slate-300">
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0 mt-1"></i>
+                <span><strong>تسجيل فواتير المشتريات بدقة:</strong> إدخال وتوثيق فواتير الواردات على برنامج الإكسل والبرامج المحاسبية مع ربطها بالأكواد والأصناف بدقة 100%.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0 mt-1"></i>
+                <span><strong>تنفيذ الجرد الدوري والرقابة:</strong> الإشراف المباشر على عمليات الجرد الفعلي ومقارنتها بالأرصدة الدفترية لكشف أي فروقات وحماية أصول المؤسسة.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0 mt-1"></i>
+                <span><strong>إدارة وتغذية الفروع:</strong> تنظيم حركة التحويلات المخزنية بين المستودع الرئيسي والمحلات وضمان توفر المنتجات وفقاً لطلب كل فرع.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0 mt-1"></i>
+                <span><strong>محاسبة المبيعات وتدقيق الإيرادات:</strong> مراجعة فواتير البيع اليومية لكل نقطة بيع، وتدقيق النقدية والمقبوضات وحسابات الإيراد.</span>
+              </li>
+            </ul>
+
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex flex-wrap gap-2">
+              <span class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">جداول Excel المتقدمة</span>
+              <span class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">جرد ومراقبة المخزون</span>
+              <span class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">سندات التحويل والصرف</span>
+              <span class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">مطابقة مبيعات الفروع</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- الخبرة 3: JCODZ - تقني وخدمة عملاء وحلول أعمال -->
+        <div class="relative pr-6 sm:pr-8 group">
+          <div class="absolute -right-[9px] top-1.5 w-4 h-4 rounded-full bg-indigo-600 ring-4 ring-indigo-100 dark:ring-indigo-950"></div>
+
+          <div class="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-shadow card-print">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <span class="px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 text-xs font-bold border border-indigo-200 dark:border-indigo-800">
+                ٢٠٢٣ – ٢٠٢٤
+              </span>
+              <span class="text-xs text-slate-500 flex items-center gap-1">
+                <i data-lucide="laptop" class="w-3.5 h-3.5 text-slate-400"></i>
+                شركة JCODZ للحلول التقنية الذكية
+              </span>
+            </div>
+
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white">
+              مسئول دعم تقني، خدمة عملاء، وتسهيل إجراءات
+            </h3>
+            <p class="text-sm font-semibold text-indigo-600 dark:text-indigo-400 mb-4">
+              تلقي ومعالجة طلبات الشركات ورواد الأعمال، وحل المشكلات الفنية والتشغيلية
+            </p>
+
+            <ul class="space-y-2.5 text-sm text-slate-600 dark:text-slate-300">
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-indigo-600 dark:text-indigo-400 shrink-0 mt-1"></i>
+                <span><strong>استقبال وتوجيه طلبات وشكاوى العملاء:</strong> إدارة منظومة التواصل وتصنيف المشكلات والتعامل معها بحكمة وسرعة لحماية ولاء العملاء.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-indigo-600 dark:text-indigo-400 shrink-0 mt-1"></i>
+                <span><strong>الدعم التقني والتشغيلي:</strong> حل المشاكل الفنية اليومية التي تواجه رواد الأعمال في استخدام الأنظمة والبرامج التقنية وربط الأجهزة.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-indigo-600 dark:text-indigo-400 shrink-0 mt-1"></i>
+                <span><strong>تسهيل الإجراءات واقتراح الحلول:</strong> المشاركة في تحسين تجربة العميل واختصار الخطوات الروتينية لرفع كفاءة الخدمات المقدمة.</span>
+              </li>
+            </ul>
+
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex flex-wrap gap-2">
+              <span class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">الدعم الفني المباشر</span>
+              <span class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">خدمة عملاء احترافية</span>
+              <span class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">أتمتة وتسهيل الأعمال</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- التعليم والدورات والشهادات المعتمدة -->
+    <section id="education" class="space-y-6">
+      <div class="border-b border-slate-200 dark:border-slate-800 pb-4">
+        <h2 class="text-2xl font-black text-slate-900 dark:text-white flex items-center gap-3">
+          <i data-lucide="graduation-cap" class="w-6 h-6 text-brand-600 dark:text-sky-400"></i>
+          المؤهلات العلمية والشهادات المعتمدة
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">أساس أكاديمي قانوني مع اعتماد وتدريب مهني معترف به رسمياً</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+
+        <!-- ليسانس حقوق -->
+        <div class="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm relative overflow-hidden card-print">
+          <div class="w-12 h-12 rounded-2xl bg-brand-50 dark:bg-brand-950/70 text-brand-600 dark:text-sky-400 flex items-center justify-center mb-4">
+            <i data-lucide="scale" class="w-6 h-6"></i>
+          </div>
+          <span class="text-xs font-bold text-brand-600 dark:text-sky-400 block mb-1">المؤهل الأكاديمي</span>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white">ليسانس حقوق</h3>
+          <p class="text-sm font-semibold text-slate-500 dark:text-slate-400 mt-1">جامعة المنصورة - مصر</p>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-3 leading-relaxed">
+            معرفة عميقة بصياغة ومراجعة العقود، الامتثال للوائح القانونية والأنظمة العمالية والتجارية، وفض النزاعات باحترافية.
+          </p>
+        </div>
+
+        <!-- محاسب قانوني موثق من الخارجية -->
+        <div class="bg-white dark:bg-slate-900 p-6 rounded-3xl border-2 border-emerald-500/40 dark:border-emerald-500/30 shadow-sm relative overflow-hidden card-print">
+          <div class="absolute top-3 left-3 bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 text-[10px] font-bold px-2 py-0.5 rounded-md">
+            اعتماد رسمي
+          </div>
+          <div class="w-12 h-12 rounded-2xl bg-emerald-50 dark:bg-emerald-950/70 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-4">
+            <i data-lucide="file-check-2" class="w-6 h-6"></i>
+          </div>
+          <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 block mb-1">شهادة وخبرة معتمدة</span>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white">دورة محاسبية وخبرة سنتين</h3>
+          <p class="text-sm font-semibold text-slate-500 dark:text-slate-400 mt-1">محاسب قانوني</p>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-3 leading-relaxed">
+            شهادة خبرة لمدة سنتين كمحاسب قانوني، <strong>موثقة من وزارة الخارجية المصرية</strong>، تشمل إعداد القوائم ومراجعة الدفاتر.
+          </p>
+        </div>
+
+        <!-- دورة فوتوشوب وتصميم -->
+        <div class="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm relative overflow-hidden card-print">
+          <div class="w-12 h-12 rounded-2xl bg-indigo-50 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 flex items-center justify-center mb-4">
+            <i data-lucide="palette" class="w-6 h-6"></i>
+          </div>
+          <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400 block mb-1">المهارات البصرية</span>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white">دورة التصميم الجرافيكي</h3>
+          <p class="text-sm font-semibold text-slate-500 dark:text-slate-400 mt-1">Adobe Photoshop</p>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-3 leading-relaxed">
+            إتقان معالجة وتعديل الصور، تجهيز المواد الإعلانية، تصميم العروض التقديمية وتنسيق الملفات بطريقة بصرية أنيقة.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- بطاقة التواصل النهائي وقنوات الاتصال المباشرة والمجربة -->
+    <section id="contact" class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-10 border border-slate-200 dark:border-slate-800 shadow-xl no-print">
+      <div class="text-center max-w-xl mx-auto mb-8">
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white mb-2">مستعد للمقابلة وبدء العمل فوراً</h2>
+        <p class="text-slate-500 dark:text-slate-400 text-sm">يسعدني التواصل لمناقشة كيف يمكنني المساهمة في ضبط العمليات والمخزون والحسابات لديكم في أبها أو عموم منطقة عسير.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <!-- اتصال هاتفي مباشر ومؤكد -->
+        <a href="tel:+966571871734" class="flex items-center gap-4 p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/70 hover:bg-brand-50 dark:hover:bg-brand-950/40 border border-slate-200 dark:border-slate-700/60 transition-all group active:scale-98">
+          <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+            <i data-lucide="phone-outgoing" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <div class="text-xs text-slate-400 font-semibold">اتصال هاتفي مباشر</div>
+            <div class="text-sm font-bold text-slate-800 dark:text-slate-100" dir="ltr">+966 57 187 1734</div>
+          </div>
+        </a>
+
+        <!-- واتساب مباشر مع كود الدولة الصحيح ورسالة مسبقة -->
+        <a href="https://api.whatsapp.com/send?phone=966571871734&text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%A3%D8%AE%20%D8%A3%D8%AD%D9%85%D8%AF%D8%8C%20%D8%AA%D9%88%D8%A7%D8%B5%D9%84%D9%86%D8%A7%20%D9%85%D8%B9%D9%83%20%D8%A8%D8%AE%D8%B5%D9%88%D8%B5%20%D9%81%D8%B1%D8%B5%D8%A9%20%D8%B9%D9%85%D9%84%20%D9%81%D9%8A%20%D9%85%D9%86%D8%B7%D9%82%D8%A9%20%D8%B9%D8%B3%D9%8A%D8%B1." target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/70 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 border border-slate-200 dark:border-slate-700/60 transition-all group active:scale-98">
+          <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+            <i data-lucide="message-square" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <div class="text-xs text-slate-400 font-semibold">محادثة واتساب فورية</div>
+            <div class="text-sm font-bold text-slate-800 dark:text-slate-100">فتح المحادثة بنقرة واحدة</div>
+          </div>
+        </a>
+
+        <!-- بريد إلكتروني مباشر -->
+        <a href="mailto:ahmedfayed72000@gmail.com?subject=%D9%81%D8%B1%D8%B5%D8%A9%20%D8%B9%D9%85%D9%84%20-%20%D8%A3%D8%AD%D9%85%D8%AF%20%D9%81%D8%A7%D9%8A%D8%AF%20(%D8%A3%D8%A8%D9%87%D8%A7)" class="flex items-center gap-4 p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/70 hover:bg-sky-50 dark:hover:bg-sky-950/40 border border-slate-200 dark:border-slate-700/60 transition-all group active:scale-98">
+          <div class="w-12 h-12 rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+            <i data-lucide="mail" class="w-6 h-6"></i>
+          </div>
+          <div class="overflow-hidden">
+            <div class="text-xs text-slate-400 font-semibold">البريد الإلكتروني</div>
+            <div class="text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-100 truncate">ahmedfayed72000@gmail.com</div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- التذييل (Footer) -->
+  <footer class="mt-16 border-t border-slate-200 dark:border-slate-800 py-8 text-center text-xs text-slate-500 dark:text-slate-400 no-print">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+      <div>
+        جميع الحقوق محفوظة © <span id="year"></span> | <strong>أحمد فايد</strong> - أخصائي عمليات وتشغيل ومحاسب مخزون (أبها)
+      </div>
+    </div>
+  </footer>
+
+  <!-- تفعيل الأيقونات والوظائف التفاعلية -->
+  <script>
+    // تفعيل أيقونات Lucide
+    lucide.createIcons();
+
+    // تحديد السنة الحالية تلقائياً
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // التبديل بين الوضع الليلي والنهاري وحفظ الخيار
+    const themeToggleBtn = document.getElementById('themeToggle');
+    
+    // التحقق من الإعداد المسبق للمستخدم
+    if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+
+    themeToggleBtn.addEventListener('click', function() {
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('color-theme', 'light');
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('color-theme', 'dark');
+      }
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>
+```
